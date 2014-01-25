@@ -23,6 +23,7 @@ requires 'Try::Tiny';
 requires 'Log::Message::Structured' => '0.005';
 requires 'aliased';
 requires 'Message::Passing' => '0.006';
+requires 'Class::Load' => '0.20';
 
 test_requires 'Plack';
 test_requires 'Twiggy';

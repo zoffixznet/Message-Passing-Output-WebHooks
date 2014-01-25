@@ -4,6 +4,7 @@ use Message::Passing::DSL;
 use AnyEvent::HTTP;
 use Message::Passing::DSL::Factory ();
 use Try::Tiny;
+use Class::Load;
 use aliased 'Message::Passing::WebHooks::Event::Call::Success';
 use aliased 'Message::Passing::WebHooks::Event::Call::Timeout';
 use aliased 'Message::Passing::WebHooks::Event::Call::Failure';
@@ -35,7 +36,7 @@ has log_chain => (
     default => sub {
         my $self = shift;
         my $class = Message::Passing::DSL::Factory->expand_class_name('Output', $self->log);
-        Class::MOP::load_class($class);
+        Class::Load::load_class($class);
         $class->new($self->log_options)
     },
 );
